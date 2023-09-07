@@ -43,9 +43,23 @@ const Server = http.createServer((req, res) => {
     github_repo_url: "https://github.com/ceasar28/HNGiX/tree/main/Stage1",
     status_code: 200,
   };
-  res.write(JSON.stringify(response));
-  res.end();
-  console.log(slackName, track);
+
+  // hadnling cors
+  const headers = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "OPTIONS, GET, POST",
+    "Content-Type": "application/json",
+  };
+
+  if (req.url === "/") {
+    res.writeHead(200, headers);
+    res.write(JSON.stringify(response));
+    return res.end();
+  }
+
+  res.writeHead(400, headers);
+  res.write(" Sorry Content not found");
+  return res.end();
 });
 
 Server.listen(3000, () => {
