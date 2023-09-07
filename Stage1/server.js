@@ -38,8 +38,9 @@ const Server = http.createServer((req, res) => {
     current_day: currentDayByname,
     utc_time: utcTimeFormatted,
     track: track,
-    github_file_url: "https://github.com/username/repo/blob/main/file_name.ext",
-    github_repo_url: "https://github.com/username/repo",
+    github_file_url:
+      "https://github.com/ceasar28/HNGiX/blob/main/Stage1/server.js",
+    github_repo_url: "https://github.com/ceasar28/HNGiX/tree/main/Stage1",
     status_code: 200,
   };
   res.write(JSON.stringify(response));
