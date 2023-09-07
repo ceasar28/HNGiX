@@ -51,7 +51,10 @@ const Server = http.createServer((req, res) => {
     "Content-Type": "application/json",
   };
 
-  if (req.url === "/") {
+  if (
+    (req.url === "/") |
+    (req.url === `/?slack_name=${slackName}&track=${track}`)
+  ) {
     res.writeHead(200, headers);
     res.write(JSON.stringify(response));
     return res.end();
