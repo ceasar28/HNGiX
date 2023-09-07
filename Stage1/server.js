@@ -19,7 +19,8 @@ const daysOfWeek = [
 ];
 const currentDayByname = daysOfWeek[currentDayOfWeek];
 // Formatting the UTC time as "2023-08-21T15:04:05Z"
-const utcTimeFormatted = currentDate.toISOString();
+
+const utcTimeFormatted = currentDate.toISOString("yyyy-MM-ddTHH:mm:ssZ");
 // Extracting the part of the string needed (excluding milliseconds)
 const formattedUTC = utcTimeFormatted.substring(0, 19) + "Z";
 
