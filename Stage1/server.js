@@ -2,30 +2,32 @@ const http = require("http");
 const url = require("url");
 const querystring = require("querystring");
 
-// a new Date object that represent the current date and time
-const currentDate = new Date();
-// Get the current day of the week (0 for Sunday, 1 for Monday, etc.)
-const currentDayOfWeek = currentDate.getUTCDay();
-
-// Convert the numeric day of the week to its corresponding name
-const daysOfWeek = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-const currentDayByname = daysOfWeek[currentDayOfWeek];
-// Formatting the UTC time as "2023-08-21T15:04:05Z"
-
-const utcTimeFormatted = currentDate.toISOString();
-// Extracting the part of the string needed (excluding milliseconds)
-const formattedUTC = utcTimeFormatted.split(".")[0] + "Z";
-
 // creating a server instance
 const Server = http.createServer((req, res) => {
+  // a new Date object that represent the current date and time
+  const currentDate = new Date();
+  // Get the current day of the week (0 for Sunday, 1 for Monday, etc.)
+  const currentDayOfWeek = currentDate.getUTCDay();
+
+  // Convert the numeric day of the week to its corresponding name
+  const daysOfWeek = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  const currentDayByname = daysOfWeek[currentDayOfWeek];
+
+  // Calculate the adjusted time by adding or subtracting minutes
+  const utcTimeFormatted = currentDate.setMinutes(currentDate.getMinutes());
+
+  // Formatting the UTC time as "2023-08-21T15:04:05Z"
+  const formattedUTC =
+    currentDate.toISOString("yyyy-MM-ddTHH:mm:ssZ").slice(0, 19) + "Z";
+
   // parsing the request URL
   const parsedUrl = url.parse(req.url);
   // Extract the query parameters as an object
