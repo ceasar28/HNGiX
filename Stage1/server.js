@@ -20,6 +20,8 @@ const daysOfWeek = [
 const currentDayByname = daysOfWeek[currentDayOfWeek];
 // Formatting the UTC time as "2023-08-21T15:04:05Z"
 const utcTimeFormatted = currentDate.toISOString();
+// Extracting the part of the string needed (excluding milliseconds)
+const formattedUTC = utcTimeFormatted.substring(0, 19) + "Z";
 
 // creating a server instance
 const Server = http.createServer((req, res) => {
@@ -36,7 +38,7 @@ const Server = http.createServer((req, res) => {
   const response = {
     slack_name: slackName,
     current_day: currentDayByname,
-    utc_time: utcTimeFormatted,
+    utc_time: formattedUTC,
     track: track,
     github_file_url:
       "https://github.com/ceasar28/HNGiX/blob/main/Stage1/server.js",
@@ -52,8 +54,8 @@ const Server = http.createServer((req, res) => {
   };
 
   if (
-    (req.url === "/api") |
-    (req.url === `/api?slack_name=${slackName}&track=${track}`)
+    req.url === "/api" ||
+    req.url === `/api?slack_name=${slackName}&track=${track}`
   ) {
     res.writeHead(200, headers);
     res.write(JSON.stringify(response));
