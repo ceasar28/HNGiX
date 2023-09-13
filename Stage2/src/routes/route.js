@@ -23,3 +23,5 @@ router.get("/api/:user_id", updatePerson);
 //@description: delete a person
 //@route: POST '/api/:user_id'
 router.get("/api/:user_id", deletePerson);
+
+module.exports = router;
