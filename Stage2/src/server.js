@@ -9,7 +9,8 @@ const notFound = require("./middlewares/errorMiddleware");
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors()); // to initialise the cors middleware
 
 app.use("/", route);
@@ -18,15 +19,14 @@ app.use(notFound);
 // app.listen(PORT, () => {
 //   console.log(`app is listening on ${PORT}`);
 // });
-
+connectDb(process.env.MONGO_CONNECT);
 const start = async () => {
   try {
-    await connectDb(process.env.MONGO_CONNECT);
     app.listen(PORT, () => {
       console.log(`Server is listening on port : ${PORT}`);
     });
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    console.log(err);
   }
 };
 

@@ -8,14 +8,13 @@ const {
 class PersonController {
   // create person controller
   async createPerson(req, res, next) {
-    const { name } = req.body;
     // calling the createPerson services
-    const newPerson = await createPerson(name);
+    const newPerson = await createPerson(req.body);
     try {
       if (newPerson.success) {
         return res.status(201).send(newPerson);
       } else {
-        return res.status(404).send(newPerson);
+        return res.status(200).send(newPerson);
       }
     } catch (err) {
       return res.status(500).send(err);
@@ -31,7 +30,7 @@ class PersonController {
       if (person.success) {
         return res.status(200).send(person);
       } else {
-        return res.status(404).send(person);
+        return res.status(200).send(person);
       }
     } catch (err) {
       return res.status(500).send(err);
@@ -48,9 +47,9 @@ class PersonController {
     const updatedPerson = await updatePerson;
     try {
       if (updatedPerson.success) {
-        return res.status(205).send(updatePerson);
+        return res.status(200).send(updatePerson);
       } else {
-        return res.status(404).send(updatedPerson);
+        return res.status(200).send(updatedPerson);
       }
     } catch (err) {
       return res.status(500).send(err);
@@ -61,14 +60,15 @@ class PersonController {
   async deletePerson(req, res, next) {
     const { user_id } = req.params;
     const deletedPerson = await deletePerson(user_id);
+
     try {
       if (deletedPerson.success) {
-        return res.status(204).send(deletedPerson);
+        return res.status(200).send(deletedPerson);
       } else {
-        return res.status(404).send(deletedPerson);
+        return res.status(200).send(deletedPerson);
       }
     } catch (err) {
-      return res.status(500).send(err);
+      return res.status(500).send({ error });
     }
   }
 }

@@ -27,7 +27,7 @@ class PersonServices {
       const fetch = await Person.findById(id);
       if (!fetch) {
         const error = new Error("Person not found");
-        return { error: error };
+        return { error: error, success: "notFound" };
       } else {
         return { success: "Person found", data: fetch };
       }
@@ -70,7 +70,7 @@ class PersonServices {
   async deletePerson(id) {
     try {
       const deletedPerson = await Person.findByIdAndDelete(id);
-      if (!deletedPerson) {
+      if (deletedPerson) {
         const error = new Error("Person not found");
         return { error: error };
       } else {
