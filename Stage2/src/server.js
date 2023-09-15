@@ -6,14 +6,29 @@ const bodyParser = require("body-parser");
 const connectDb = require("../config/database");
 const route = require("./routes/route");
 const notFound = require("./middlewares/errorMiddleware");
+const swaggerUi = require("swagger-ui-express");
+const swaggerSpec = require("./docs/swagger"); // Import your Swagger configuration
 
 const app = express();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors()); // to initialise the cors middleware
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false }));
+// Apply the JSON body parser middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+// to initialise the cors middleware
+app.use(
+  cors({
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+  })
+);
+// Serve Swagger documentation
 
 app.use("/", route);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use(notFound);
 
 // app.listen(PORT, () => {

@@ -27,7 +27,7 @@ class PersonServices {
       const fetch = await Person.findById(id);
       if (!fetch) {
         const error = new Error("Person not found");
-        return { error: error, success: "notFound" };
+        return { error: error.message };
       } else {
         return { success: "Person found", data: fetch };
       }
@@ -42,6 +42,7 @@ class PersonServices {
 
   // update person
   async updatePerson(data) {
+    console.log("service", data);
     const name = data.name;
     const id = data.id;
     try {
@@ -52,7 +53,7 @@ class PersonServices {
       );
       if (!updatedUser) {
         const error = new Error("Person not found");
-        return { error: error };
+        return { error: error.message };
       } else {
         return { success: "Person Updated Successfully", data: updatedUser };
       }
@@ -71,10 +72,10 @@ class PersonServices {
     try {
       const deletedPerson = await Person.findByIdAndDelete(id);
       if (deletedPerson) {
-        const error = new Error("Person not found");
-        return { error: error };
-      } else {
         return { success: "Person Deleted successfully", data: deletedPerson };
+      } else {
+        const error = new Error("Person not found");
+        return { error: error.message };
       }
     } catch (err) {
       // Check if the error is a CastError (invalid ID)

@@ -44,14 +44,17 @@ class PersonController {
       id: req.params.user_id,
     };
 
-    const updatedPerson = await updatePerson;
+    console.log(data);
+    const updatedPerson = await updatePerson(data);
+
     try {
       if (updatedPerson.success) {
-        return res.status(200).send(updatePerson);
+        return res.status(200).send(updatedPerson);
       } else {
         return res.status(200).send(updatedPerson);
       }
     } catch (err) {
+      console.error(err);
       return res.status(500).send(err);
     }
   }
@@ -65,7 +68,7 @@ class PersonController {
       if (deletedPerson.success) {
         return res.status(200).send(deletedPerson);
       } else {
-        return res.status(200).send(deletedPerson);
+        return res.status(400).send(deletedPerson);
       }
     } catch (err) {
       return res.status(500).send({ error });
