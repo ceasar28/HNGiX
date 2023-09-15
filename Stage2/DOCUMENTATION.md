@@ -2,10 +2,6 @@
 
 This document provides detailed information about the API endpoints, request/response formats, sample usage, limitations, and setup instructions.
 
-## UML and E-R Diagram
-
-![ULM and E-R Diagram](./public/UML.png)
-
 ## API Endpoints
 
 ### 1. Create a Person Resource

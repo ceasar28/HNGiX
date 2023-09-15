@@ -1,6 +1,7 @@
 const {
   createPerson,
   getPerson,
+  getPeople,
   updatePerson,
   deletePerson,
 } = require("../services/service");
@@ -31,6 +32,20 @@ class PersonController {
         return res.status(200).send(person);
       } else {
         return res.status(404).send(person);
+      }
+    } catch (err) {
+      return res.status(500).send(err);
+    }
+  }
+
+  // read all people controller
+  async getPeople(req, res, next) {
+    const people = await getPeople();
+    try {
+      if (people.success) {
+        return res.status(200).send(people);
+      } else {
+        return res.status(404).send(people);
       }
     } catch (err) {
       return res.status(500).send(err);

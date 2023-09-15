@@ -4,6 +4,7 @@ const router = express.Router();
 const {
   createPerson,
   getPerson,
+  getPeople,
   updatePerson,
   deletePerson,
 } = require("../controllers/controller");
@@ -15,6 +16,10 @@ router.post("/api", createPerson);
 //@description: get person
 //@route: GET '/api/:user_id'
 router.get("/api/:user_id", getPerson);
+
+//@description: get all person
+//@route: GET '/api'
+router.get("/api", getPeople);
 
 //@description: update a person
 //@route: POST '/api/:user_id'

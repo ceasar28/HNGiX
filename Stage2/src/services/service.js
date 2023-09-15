@@ -42,6 +42,21 @@ class PersonServices {
     }
   }
 
+  // to get all people
+  async getPeople() {
+    try {
+      const people = await User.find({}).lean();
+      if (!people) {
+        const error = new Error("NO data fetched");
+        return { error: error.mesage };
+      } else {
+        return { success: "All data fetched", data: people };
+      }
+    } catch (err) {
+      return { error: err.message };
+    }
+  }
+
   // update person
   async updatePerson(data) {
     console.log("service", data);
