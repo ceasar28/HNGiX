@@ -10,7 +10,7 @@ class PersonServices {
           `Missing "name" field or wrong data type(must be a string)`
         );
 
-        return { error: error.Message };
+        return { error: error.message };
       } else {
         const person = new Person({ name });
         const saved = await person.save();
