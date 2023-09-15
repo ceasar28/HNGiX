@@ -30,10 +30,11 @@ This document provides detailed information about the API endpoints, request/res
 
   ```json
   {
+    "success": "user saved successfull",
     "data": {
-      "_id": "1234567890",
-      "name": "Mark Essein"
-      // other user properties
+      "name": "Mark Essein",
+      "_id": "65047088ae850386b9778aa0",
+      "__v": 0
     }
   }
   ```
@@ -42,13 +43,13 @@ This document provides detailed information about the API endpoints, request/res
 
   ```json
   {
-    "error": "error message"
+    "error": "Missing \"name\" field or wrong data type(must be a string)"
   }
   ```
 
 - `500 Internal Server Error` for any other server-related errors.
 
-### 2. Fetch a Person Resource
+### 2. Get a Person Resource
 
 - **Endpoint:** `/api/:userId`
 - **Method:** `GET`
@@ -64,10 +65,11 @@ Only The `userId` parameter should be included in the URL.
 
   ```json
   {
+    "success": "Person found",
     "data": {
-      "_id": "1234567890",
-      "name": "Mark Essein"
-      // other user properties
+      "_id": "6504734dd769f51f8a06d3c4",
+      "name": "Mark Essein 2",
+      "__v": 0
     }
   }
   ```
@@ -76,7 +78,7 @@ Only The `userId` parameter should be included in the URL.
 
   ```json
   {
-    "message": "User not found."
+    "error": "Person not found"
   }
   ```
 
@@ -84,7 +86,7 @@ Only The `userId` parameter should be included in the URL.
 
   ```json
   {
-    "message": "Invalid ID format"
+    "error": "Invalid id"
   }
   ```
 
@@ -92,7 +94,7 @@ Only The `userId` parameter should be included in the URL.
 
 ### 3. Update a Person Resource
 
-- **Endpoint:** `/api/userId`
+- **Endpoint:** `/api/:userId`
 - **Method:** `PUT`
 - **Access:** Public
 
@@ -103,7 +105,6 @@ Only The `userId` parameter should be included in the URL.
   ```json
   {
     "name": "Updated Name"
-    // other updated user properties
   }
   ```
 
@@ -113,10 +114,11 @@ Only The `userId` parameter should be included in the URL.
 
   ```json
   {
+    "success": "Person Updated Successfully",
     "data": {
-      "_id": "1234567890",
-      "name": "Updated Name"
-      // other updated user properties
+      "_id": "6504734dd769f51f8a06d3c4",
+      "name": "mark Esein 50",
+      "__v": 0
     }
   }
   ```
@@ -125,15 +127,7 @@ Only The `userId` parameter should be included in the URL.
 
   ```json
   {
-    "error": "User not found."
-  }
-  ```
-
-- `400 Bad Request` if the request body is missing or not valid, or if `userId` is not in a valid MongoDB ObjectId:
-
-  ```json
-  {
-    "message": "Invalid ID format"
+    "error": "Person not found"
   }
   ```
 
@@ -141,7 +135,7 @@ Only The `userId` parameter should be included in the URL.
 
 ### 4. Delete a Person Resource
 
-- **Endpoint:** `/api/userId`
+- **Endpoint:** `/api/:userId`
 - **Method:** `DELETE`
 - **Access:** Public
 
@@ -155,10 +149,11 @@ No request body is required. The `userId` parameter should be included in the UR
 
   ```json
   {
+    "success": "Person Deleted successfully",
     "data": {
-      "_id": "1234567890",
-      "name": "Deleted User"
-      // other deleted user properties
+      "_id": "6504734dd769f51f8a06d3c4",
+      "name": "mark Esein 50",
+      "__v": 0
     }
   }
   ```
@@ -175,13 +170,13 @@ No request body is required. The `userId` parameter should be included in the UR
 
   ```json
   {
-    "message": "Invalid ID format"
+    "error": "Person not found"
   }
   ```
 
 - `500 Internal Server Error` for any other server-related errors.
 
-## Sample Usage
+## Example Usage
 
 ### Create a Person Resource (POST)
 
@@ -192,8 +187,7 @@ POST /api
 Content-Type: application/json
 
 {
-  "name": "Jane Smith"
-  // other user properties
+  "name": "Mark Essein"
 }
 ```
 
@@ -201,30 +195,32 @@ Content-Type: application/json
 
 ```json
 {
+  "success": "user saved successfull",
   "data": {
-    "_id": "0987654321",
-    "name": "Jane Smith"
-    // other user properties
+    "name": "Mark Essein",
+    "_id": "6504734dd769f51f8a06d3c4",
+    "__v": 0
   }
 }
 ```
 
-### Fetch a Person Resource (GET)
+### Get a Person Resource (GET)
 
 **Request:**
 
 ```http
-GET /api/1234567890
+GET /api/6504734dd769f51f8a06d3c4
 ```
 
 **Response (200 OK):**
 
 ```json
 {
+  "success": "Person found",
   "data": {
-    "_id": "1234567890",
-    "name": "John Doe"
-    // other user properties
+    "_id": "6504734dd769f51f8a06d3c4",
+    "name": "Mark Essein 2",
+    "__v": 0
   }
 }
 ```
@@ -238,8 +234,7 @@ PUT /api/1234567890
 Content-Type: application/json
 
 {
-  "name": "Updated Name"
-  // other updated user properties
+  "name": "mark Esein 50"
 }
 ```
 
@@ -247,10 +242,11 @@ Content-Type: application/json
 
 ```json
 {
+  "success": "Person Updated Successfully",
   "data": {
-    "_id": "1234567890",
-    "name": "Updated Name"
-    // other updated user properties
+    "_id": "6504734dd769f51f8a06d3c4",
+    "name": "mark Esein 50",
+    "__v": 0
   }
 }
 ```
@@ -260,42 +256,25 @@ Content-Type: application/json
 **Request:**
 
 ```http
-DELETE /api/1234567890
+DELETE /api/6504734dd769f51f8a06d3c4
 ```
 
 **Response (200 OK):**
 
 ```json
 {
+  "success": "Person Deleted successfully",
   "data": {
-    "_id": "1234567890",
-    "name": "Deleted User"
-    // other deleted user properties
+    "_id": "6504734dd769f51f8a06d3c4",
+    "name": "Mark Essein 2",
+    "__v": 0
   }
 }
 ```
 
 ## Testing
 
-API endpoints can be tested easily using [Postman's CLI tool](https://learning.postman.com/docs/postman-cli/postman-cli-installation/) with the command below
-
-```bash
-postman login --with-api-key <replace-with-postman-api-key>
-postman collection run 29666150-9190139c-e5db-45b3-88ea-a924541b801d
-```
-
-Postman CLI output:
-![postman test output](./public/postman-test.png)
-
-## Setup
-
-To set up and deploy the API locally or on a server, follow these steps:
-
-1. Clone the repository containing the API code.
-2. Install the required dependencies using a package manager like npm or yarn.
-3. Configure the MongoDB connection string in the `.env` file.
-4. Start the API server using the appropriate command (e.g., `npm run start`).
-5. The API will be available at the specified base URL (e.g., `http://localhost:PORT`).
+API endpoints can be tested easily using [Postman](https://documenter.getpostman.com/view/20635269/2s9YC5zYca) Docs
 
 <mark>For more detailed setup instructions see</mark>: [README.md](./README.md)
 

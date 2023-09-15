@@ -14,7 +14,7 @@ class PersonController {
       if (newPerson.success) {
         return res.status(201).send(newPerson);
       } else {
-        return res.status(200).send(newPerson);
+        return res.status(400).send(newPerson);
       }
     } catch (err) {
       return res.status(500).send(err);
@@ -30,7 +30,7 @@ class PersonController {
       if (person.success) {
         return res.status(200).send(person);
       } else {
-        return res.status(200).send(person);
+        return res.status(404).send(person);
       }
     } catch (err) {
       return res.status(500).send(err);
@@ -51,7 +51,7 @@ class PersonController {
       if (updatedPerson.success) {
         return res.status(200).send(updatedPerson);
       } else {
-        return res.status(200).send(updatedPerson);
+        return res.status(404).send(updatedPerson);
       }
     } catch (err) {
       console.error(err);

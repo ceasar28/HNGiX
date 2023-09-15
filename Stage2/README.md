@@ -15,6 +15,7 @@ A simple REST API capable of CRUD operations on a "person" resource that interfa
 
 ## API Documentation
 
+- [Postman Docs](https://documenter.getpostman.com/view/20635269/2s9YC5zYca)
 - [Documentation](./DOCUMENTATION.md)
 
 ## Usage
