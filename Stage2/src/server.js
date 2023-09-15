@@ -4,7 +4,7 @@ const PORT = 5000;
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const connectDb = require("../config/database");
-const route = require("./routes/route");
+const routes = require("./routes/route");
 const notFound = require("./middlewares/errorMiddleware");
 const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require("./docs/swagger"); // Import your Swagger configuration
@@ -27,7 +27,7 @@ app.use(
 );
 // Serve Swagger documentation
 
-app.use("/", route);
+app.use("/", routes);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use(notFound);
 

@@ -11,14 +11,17 @@ const options = {
     servers: [
       {
         url: "http://localhost:5000",
+        description: "Production",
+      },
+      {
+        url: "http://localhost:5000",
         description: "Local server",
       },
     ],
   },
 
-  apis: ["./../routes/*.js"], // Point to the folder containing your route files
+  apis: ["./routes/*.js"], // Point to the folder containing your route files
 };
-
 const specs = swaggerJsdoc(options);
 
 module.exports = specs;

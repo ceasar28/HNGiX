@@ -32,6 +32,34 @@ const {
 //@description: create a person
 //@route: POST '/api'
 
+/**
+ * @swagger
+ * tags:
+ *   name: People
+ *   description: API endpoints for managing people
+ */
+
+/**
+ * @swagger
+ * /api:
+ *   post:
+ *     summary: Create a new person
+ *     description: Create a new person with the provided information.
+ *     tags: [People]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Person' // Reference to your Person schema definition
+ *     responses:
+ *       201:
+ *         description: Successfully created a new person.
+ *       400:
+ *         description: Invalid request data.
+ *       500:
+ *         description: Internal server error.
+ */
 router.post("/api", createPerson);
 
 //@description: get person
