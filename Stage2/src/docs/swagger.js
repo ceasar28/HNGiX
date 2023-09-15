@@ -10,7 +10,7 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:5000",
+        url: "https://hngix.cyclic.cloud/api/",
         description: "Production",
       },
       {
@@ -20,7 +20,7 @@ const options = {
     ],
   },
 
-  apis: ["./routes/*.js"], // Point to the folder containing your route files
+  apis: ["./src/routes/**.js"], // Point to the folder containing your route files
 };
 const specs = swaggerJsdoc(options);
 

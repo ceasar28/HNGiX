@@ -7,10 +7,10 @@
  *     required:
  *       - name
  *     properties:
- *       id:
+ *      id:
  *         type: string
  *         description: databases generated id of the person
- *       name:
+ *      name:
  *         type: string
  *         description: name of the person
  *     example:
@@ -28,16 +28,6 @@ const {
   updatePerson,
   deletePerson,
 } = require("../controllers/controller");
-
-//@description: create a person
-//@route: POST '/api'
-
-/**
- * @swagger
- * tags:
- *   name: People
- *   description: API endpoints for managing people
- */
 
 /**
  * @swagger
@@ -60,7 +50,18 @@ const {
  *       500:
  *         description: Internal server error.
  */
+
+//@description: create a person
+//@route: POST '/api'
 router.post("/api", createPerson);
+
+/**
+ * @swagger
+ * /users:
+ *   get:
+ *     summary: Retrieve a list of JSONPlaceholder users
+ *     description: Retrieve a list of users from JSONPlaceholder. Can be used to populate a list of fake users when prototyping or testing an API.
+ */
 
 //@description: get person
 //@route: GET '/api/:user_id'
