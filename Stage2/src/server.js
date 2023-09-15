@@ -6,8 +6,6 @@ const bodyParser = require("body-parser");
 const connectDb = require("../config/database");
 const routes = require("./routes/personRoute");
 const notFound = require("./middlewares/errorMiddleware");
-const swaggerUi = require("swagger-ui-express");
-const swaggerSpec = require("./docs/swagger"); // Import your Swagger configuration
 
 const app = express();
 
@@ -25,10 +23,8 @@ app.use(
     optionsSuccessStatus: 204,
   })
 );
-// Serve Swagger documentation
 
 app.use("/", routes);
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use(notFound);
 
 // app.listen(PORT, () => {
