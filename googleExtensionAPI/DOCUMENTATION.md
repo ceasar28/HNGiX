@@ -2,65 +2,75 @@
 
 **Description**: This API allows users to upload videos and play them through a web interface.
 
-**Base URL**: <http://localhost:3000/api>
+**Base URL**: <https://hngix.cyclic.cloud/api>, <http://localhost:3000/api>
 
 **Endpoints**:
+https://hngix.cyclic.cloud/api/start-recording
 
 1. **Start recording**
-   - **Endpoint**: `/start-recording`
+
+   - **Endpoint**: `https://hngix.cyclic.cloud/api/start-recording`
+   - **Local Endpoint**: `https://hngix.cyclic.cloud/api/start-recording`
    - **Method**: POST
    - **Request Format**:
      - Content-Type: multipart/form-data
      - Body: File (Video File)
 
-    ```json
-     {
-      "mimetype": "video/webm"
-     }
-     ```
+   ```json
+   {
+     "mimetype": "video/webm"
+   }
+   ```
 
    - **Response Format**:
+
      - Status Code: 200 OK
      - Body: JSON
 
      ```json
      {
-      "sessionId": "ashd-2u48-wjdn"
+       "sessionId": "ashd-2u48-wjdn"
      }
+     ```
 
    - **Description**: Generate upload session with server.
 
 2. **Record video chunks**
+
    - **Endpoint**: `/record-data/:sessionId`
    - **Method**: POST
    - **Request Format**:
+
      - URL Parameter: sessionId (UUID) - The unique identifier of the uploaded video.
      - Body: dataChunk(base64 string) - Blob object converted to base64
 
      ```json
      {
-        "dataChunk": "data"
+       "dataChunk": "data"
      }
      ```
 
    - **Response Format**:
+
      - Status Code: 200 OK
      - Body: JSON
 
      ```json
      {
-        "message": "Data received and saved"
+       "message": "Data received and saved"
      }
      ```
 
    - **Description**: Send video chunks
 
 3. **Stop Recording**
+
    - **Endpoint**: `/stop-recording/sessionId`
    - **Method**: POST
    - **Request Format**:
      - URL Parameter: sessionId (UUID) - The unique identifier of the uploaded video.
    - **Response Format**:
+
      - Status Code: 200 OK
      - Body: No
 
@@ -75,6 +85,7 @@
 **Example Usage**:
 
 - Start Recording:
+
   - Request:
 
     ```json
@@ -84,7 +95,7 @@
     ```
 
   - Response:
-  200 OK
+    200 OK
 
     ```json
     {
@@ -93,6 +104,7 @@
     ```
 
 - Record Data:
+
   - Request:
 
     ```json
@@ -102,7 +114,7 @@
     ```
 
   - Response:
-  200 OK
+    200 OK
 
     ```json
     {
@@ -111,6 +123,7 @@
     ```
 
 - Stop recording:
+
   - Request:
 
     ```json
@@ -120,7 +133,7 @@
     ```
 
   - Response:
-  200 OK
+    200 OK
 
     ```json
     {

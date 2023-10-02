@@ -1,8 +1,13 @@
 import express from "express";
+import { config } from "dotenv";
+config();
 import cors from "cors";
 // import morgan from "morgan";
-import router from "./routes/video.route.js";
+import router from "./routes/videoRoute.js";
 import errorHandler from "./middleware/errorHandler.js";
+import connectDB from "../src/dbConfig.js";
+// import connectDB from "./src/dbConfig.js";
+const PORT = 3000;
 
 const app = express();
 
@@ -18,4 +23,7 @@ app.use(express.urlencoded({ limit: "50mb" }));
 app.use("/api", router);
 app.use(errorHandler);
 
-export default app;
+connectDB();
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
