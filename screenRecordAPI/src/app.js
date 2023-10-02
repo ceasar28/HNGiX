@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-
+const recordRoute = require("./routes/recordRoute");
 const app = express();
 
 app.use(express.json());
@@ -15,9 +15,7 @@ app.use(
   })
 );
 
-app.use((req, res, next) => {
-  console.log(req);
-});
+app.use("/record", recordRoute);
 
 app.listen(3000, () => {
   console.log("server is up and running");
