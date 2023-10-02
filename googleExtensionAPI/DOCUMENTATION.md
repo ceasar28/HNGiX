@@ -1,6 +1,6 @@
 # Google extension Screen Recorder API
 
-## Postman documentation: https://documenter.getpostman.com/view/20635269/2s9YJc1Nay
+## Postman documentation: <https://documenter.getpostman.com/view/20635269/2s9YJc1Nay>
 
 **Base URL**: <https://hngix.cyclic.cloud/api>, <http://localhost:3000/api>
 
