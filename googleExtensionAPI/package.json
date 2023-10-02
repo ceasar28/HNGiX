@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "crudapp",
+  "name": "ExtensionAPI",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "Nicholas Ikiroma",
+  "author": "Emmanuel EKETE",
   "license": "MIT",
   "dependencies": {
     "amqplib": "^0.10.3",
