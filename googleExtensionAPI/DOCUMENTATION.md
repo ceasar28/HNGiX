@@ -1,5 +1,7 @@
 # Google extension Screen Recorder API
 
+## Postman documentation: https://documenter.getpostman.com/view/20635269/2s9YJc1Nay
+
 **Base URL**: <https://hngix.cyclic.cloud/api>, <http://localhost:3000/api>
 
 **Endpoints**:
@@ -35,7 +37,7 @@ https://hngix.cyclic.cloud/api/start-recording
 
 2. **Record video chunks**
 
-   - **Endpoint**: `/record-data/:sessionId`
+   - **Endpoint**: `https://hngix.cyclic.cloud/api/record-data/:sessionId`
    - **Method**: POST
    - **Request Format**:
 
@@ -63,7 +65,7 @@ https://hngix.cyclic.cloud/api/start-recording
 
 3. **Stop Recording**
 
-   - **Endpoint**: `/stop-recording/sessionId`
+   - **Endpoint**: `https://hngix.cyclic.cloud/api/stop-recording/sessionId`
    - **Method**: POST
    - **Request Format**:
      - URL Parameter: sessionId (UUID) - The unique identifier of the uploaded video.
@@ -87,7 +89,7 @@ https://hngix.cyclic.cloud/api/start-recording
   - Request:
 
     ```json
-    POST https://your-api-domain.com/api/start-recording
+    POST https://hngix.cyclic.cloud/api/start-recording
     Content-Type: application/json
     Body: mimetype (ex "video/webm")
     ```
@@ -106,7 +108,7 @@ https://hngix.cyclic.cloud/api/start-recording
   - Request:
 
     ```json
-    POST https://your-api-domain.com/api/record-data/:sessionId
+    POST https://hngix.cyclic.cloud/api/record-data/:sessionId
     Content-Type: application/json
     Body: dataChunk (base64 string)
     ```
@@ -125,7 +127,7 @@ https://hngix.cyclic.cloud/api/start-recording
   - Request:
 
     ```json
-    POST https://api-domain.com/api/stop-recording/:sessionId
+    POST https://hngix.cyclic.cloud/api/stop-recording/:sessionId
     Content-Type: application/json
     Body: No Body
     ```
@@ -135,8 +137,8 @@ https://hngix.cyclic.cloud/api/start-recording
 
     ```json
     {
-      "message": "Recording received and saved",
-      "videoURL": "http://domain.com/video.mp4"
+      "message": "Recording received and saved"
+      <!-- "videoURL": "http://domain.com/video.mp4" -->
     }
     ```
 
