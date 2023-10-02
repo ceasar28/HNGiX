@@ -1,6 +1,4 @@
-# API Title: Video Upload and Playback Service API
-
-**Description**: This API allows users to upload videos and play them through a web interface.
+# Google extension Screen Recorder API
 
 **Base URL**: <https://hngix.cyclic.cloud/api>, <http://localhost:3000/api>
 
