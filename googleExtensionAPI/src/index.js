@@ -23,7 +23,6 @@ app.use(express.urlencoded({ limit: "50mb" }));
 app.use("/api", router);
 app.use(errorHandler);
 
-connectDB();
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
