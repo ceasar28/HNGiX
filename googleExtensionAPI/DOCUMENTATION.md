@@ -13,7 +13,9 @@ https://hngix.cyclic.cloud/api/start-recording
    - **Local Endpoint**: `http://localhost:3000/api/start-recording`
    - **Method**: POST
    - **Request Format**:
+
      - Content-Type: multipart/form-data
+
      - Body: File (Video File)
 
    ```json
